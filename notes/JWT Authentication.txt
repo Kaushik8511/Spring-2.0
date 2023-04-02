@@ -1,0 +1,38 @@
+********************************JWT Authentication in spring boot
+What?
+	Open statndard that defines compact and a self contained way for securly transmitting information between parties as JSON.
+	Mostly used for securing REST apis
+	It follows stateless authentication mechanism
+	
+When?
+	Authorization:
+		Most common scenario
+		Once the user is logged in all the subsequent requests will include JWT, allowing the user to access.
+		Single sign on is the feature that widely uses JWT nowadays
+		
+	Information exchange:
+	
+How?
+	User send a request with the credentials
+	If credentials are valid server sends the token(JWT) to the client
+	In all the subsequent request this token will be sent in the request to authenticate client
+		
+JWT consists of three parts seperated by dots(.).
+	xxxxxx.yyyyyy.zzzzzz
+	which are:
+		header => algo used, type
+		payload => information or data or claims
+		signature => 
+		
+Devlopment steps:
+	Add JWT related maven dependencies
+	Create JWT authentication entry point
+		-- commence method is called whenever exception is thrown due to unauthorized user trying to access resource that requires authentication
+	Add JWT properties in application.properties
+	Create JWT provider -- utility class
+	Create JwtAuthenticationFilter
+	Create JwtAuthResponseDTO
+	Configure JWT in spring security
+	
+
+	

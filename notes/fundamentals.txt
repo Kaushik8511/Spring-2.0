@@ -1,0 +1,18 @@
+*******************************Spring boot********************************************************
+
+WHAT??
+	--Spring framework which fasten the development of application.
+	--Spring boot makes developers life very easy by doing most of the configurations automatically.
+
+WHY?
+	--Magic (Auto configuration)
+	--We can see all these magic in the META_INF/spring.factories file
+	--All the configurations are happening in the background
+	--embedded server
+	--Minimal manual configuration
+	
+How we can create spring boot application?
+	--Create maven project and add spring boot starter dependencies
+	--Use Spring Initializr
+	--Use ide like STS (Spring tool suit)
+	--Spring boot CLI

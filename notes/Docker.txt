@@ -1,0 +1,23 @@
+******************If you want to deploy spring boot application on a docker**************************
+
+First you have to create dockerfile which contains all the instruction to create docker image and pull it to online docker
+image hub.
+
+Docker file contains att the instructions to create docker image and we can use this image to create different containers for 
+different platforms like testing, staging, uat, prod etc.
+
+Docker image is nothing but a executable package.
+
+Docker container is the running instance of the docker image.
+
+This complete process is called dockerization.
+
+
+***************************************************
+Creating docker file and image
+	Dockerfile => name should be this only OR you'll have to specify whatever name you are using at the time of running.
+	FROM => The first statement in the Dockerfile => It defines base image or a parent image for our image
+	eclipse-temurin
+	
+DOCKER IS AN AMZING THING YAAR!!!!!!
+In just few commands you can containarize your applications!! wow!!!!!

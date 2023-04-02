@@ -1,0 +1,68 @@
+*************************Spring Security**********************************
+
+spring-boot-starter-security starter that aggregates spring security related dependencies
+
+Enable's spring security's default configuration, which creates a servlet filter as a bean named SpringSecurityFilterChain.
+Provides default login form for you.
+
+Creates default username with a username as user and randomly generate password that is logged to the console.
+
+Spring boot provides properties to customize default username and password
+
+Protect the password storage with BCrypt algorithm
+
+lets the user logout (default logout feature)
+
+CSRF attack prevention (enabled by default)
+
+If spring security is on the classpath, Spring boot automatically secure all the endpoints with basic authentication.
+
+Customize username and password:
+	spring.security.user.name=dasda
+	spring.secure.user.password=dfasda
+	spring.secure.user.role=admin
+	
+**********************************
+How Http basic authentication works internally in spring security?
+	=> see BasicAuthenticationFilter class to understand (basic64 decode and authentication)
+	
+************************How to access API without authentication (where not required)
+		http
+                .csrf().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests((authorize) -> authorize
+                        .antMatchers(HttpMethod.GET, "/v1/**").permitAll() => you can also try requestMatcher
+                        .antMatchers("/v1/auth/**").permitAll()
+                        .antMatchers("/v2/api-docs/**").permitAll()
+                        .antMatchers("/v3/api-docs/**").permitAll()
+                        .antMatchers("/swagger-ui/**").permitAll()
+                        .antMatchers("/swagger-resources/**").permitAll()
+                        .antMatchers("/swagger-ui.html").permitAll()
+                        .antMatchers("/webjars/**").permitAll()
+                        .anyRequest() => authenticate all request except above permitted ones
+                        .authenticated()
+                );
+	
+**********************************IN MEMORY AUTHENTICATION
+You have to create userDetailsService() method in the security configuration class
+create User with username, password and role and build it
+Then return the InMemoryUserDetailsManager in this function
+Have to encode the password with the BCrypt password encoder else it wont work
+
+
+*******************Give access to specific role only (AUTHORIZATION)
+@EnableMethodSecurity in configuration class
+And at the method which you want to authorize use below annotation
+@PreAuthorize("hasRole('ROLE_NAME')")
+
+
+****************************Database authentication
+Spring support many authentication providers like OAuth2, LDAP, DAO etc.
+Search for AuthenticationFilter class to understand how it works internally
+Configure authentication manager into your configuration class
+Inject the userDetailsService dependency
