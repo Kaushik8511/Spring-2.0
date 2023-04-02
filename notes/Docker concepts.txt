@@ -1,0 +1,175 @@
+Docker isolates applications from its infrastructure including hardwares, operating systems and container runtime.
+Written in GO programming language.
+
+It uses linux kernel's features ti deliver functionalities.
+Uses namespaces technology to provide an isolated workspace called "container".
+creates a set of namespaces for every container and each aspect run in seperate namespace with access limited to that namespace.
+A Linux namespace is a Linux kernel feature that isolates and virtualizes system resources. Processes which are restricted to a namespace can only interact with 
+resources or processes that are part of the same namespace. Namespaces are an important part of Docker’s isolation model. Namespaces exist for each type of resource, 
+including networking, storage, processes, hostname control and others.
+
+
+Benefits:
+	Consistent and isolated environment.
+	fast deployment
+	repeatibility and automation.
+
+Docker not good for the applications:
+	Requiring high performance or security
+	Based on monolithic architecture.
+	Using rich GUI features
+
+Docker container creation process:
+	create dockerfile
+		FROM alpine
+		CMD ["echo", "hello-world"]
+			FROM defines the base image 
+		docker build -t repository_name:version . => creates the docker image
+		docker run repository_name:version => will run the container and print hello world
+
+	use the docker file to create container image
+	use the contaner image to create running container
+
+DOCKERFILE:
+	A file that contains the information needed to create the docker image.
+	is a text document that contains all the commands you would normally execute manually in order to build a Docker image. 
+	Docker can build images automatically by reading the instructions from a Dockerfile.
+
+DOCKER IMAGE:
+	read only template with instruction for creating docker container
+	A writeable layer is added when image run as a container.
+	Layers can be shared between images, which saves network bandwidth and disk space
+
+DOCKER CONTAINER:
+	Runnable instance of an image.
+	Can be created, stopped and started or deleted using the docker API and CLI.
+
+
+		
+
+
+Container orchestration:
+	Over the time new applications are deployes and there will be lot more containers.
+	Initially that growth can be handled.
+	Consider scaling, managing, connecting thousands of containers like database, app etc. This can easily be out of control.
+	We nee container orchestration.
+
+	CONTAINER ORCHESTRATION: It is the process that automates the container lifecycle of containerized applications.
+		which includes deployment, management, scaling, networking, availability.
+		It is a NECCESITY in large dynamic environment.
+		features:
+			defines container images and registry.
+			improves provisioning and deployment.
+			security, availability, scaling, load balancing, resource allocation and scheduling, performance
+			Rolling updates and roll backs
+			health check and automated error handling.
+		
+		Configuration files:	
+			YAML or JSON.
+		Tools: Marathon, Nomad, Docker swarm, kubernates
+	
+	
+KUBERNATES:
+	Also know as K8s, is the open source system for automating deployment, scaling and management of containerized applications.
+	Open source containerization orchestration platform. dev by google and managed by CNCF.
+
+	pods: smallest deployable compute object in kubernates and the higher level abstaction to run workloads.
+	service: expose application running on a set of pods.
+	storage:
+	configuration:
+	security:
+	
+	Capabilities:
+		Automated rollout and rollbacks
+		storage orchestration
+		horizontal scaling
+		Automated bin packing
+		secret and configuration management
+		IPv4/IPv6 dual stack
+		Batch execution
+		self healing
+		service discovery and load balancing
+		Designed for extensibilities
+
+Kubernates architecture:
+	deployment of kubernates is called kubernates cluster.
+	cluster is cluster of nodes that runs containerized application
+	Each cluster has one master node => kubernates control plane
+	nodes are the worker machines in the kubernates
+
+	Kubernates control plane (master node):
+		kubernate-api-server exposes the kubernates api which serves as the front end, all communications utilizes this API
+		etcd => highly available distributed key-value store that contains all the cluster data
+		kube-scheduler => assigns newly created pods to nodes
+		kube-controller manager => Runs controller process that monitor clustor state.
+		cloud-controller manager => Runs controllers that interact with underlying cloud providers.
+
+	applications run on nodes
+	nodes are not created by the kubernates itself but by the cloud providers
+
+	Node: worker machines in the kubernates
+		user applications are run on nodes
+		can be virtual or physical machines
+		each node is managed by the control pane
+		contains services neccesary to run the applications
+		nodes include PODS which is smallest deployment entity in kubernates
+		podes include one or more containers
+		
+		kubelet: Most important component of the worker node
+			communicates with the API server
+			ensures that pods and their associated containers are running
+			reports to the control plane on the pods health and status
+
+		Container runtime (ex docker):
+			downloads images and runs containers
+			kubernates implements an interface so that this component is pluggable
+
+		kube-proxy:
+			network proxy
+			Maintains networl rules that allow communication to pods
+
+
+kubernates objects:
+	prsistence entities.
+	contains two main things: 1) object spec 2) status
+	pods:
+	replicaSet:
+	Deployment: Higher level object that provides updates for the pods and replicasets
+	Service:
+		REST object like pods
+		logical abstractio for a set of pods
+		provides policies for accessing the pods and clusters
+		Act as a load balancer across the pods
+		Service keeps track of changes and exposes a single IP address or a DNS name
+		4 types of services: clusterIP, NodePort, Load balancer, External name
+
+	
+
+Kubectl (kube command tool line):
+	Kubernates command line interface
+	Helps users deploy applications, inspect and manage cluster resources, view logs and more.
+	key command types:
+		imperative commands
+		imperative object configuration
+		declrative object configuration
+	kubectl [command] [type] [name] [flags]
+		command => any operation to be performed like create, get, apply, delete
+		type => resource type like pod, deployment, replicaset
+		name => resource name if applicable
+		flags => special options or modifiers that overrde default values
+
+
+commands:
+	kubectl version
+	kubectl config get-clusters
+	kubectl config get-contexts
+	export MY_NAMESPACE=sn-labs-$USERNAME
+	docker build -t us.icr.io/$MY_NAMESPACE/hello-world:1 . && docker push us.icr.io/$MY_NAMESPACE/hello-world:1
+	kubectl run hello-world --image us.icr.io/$MY_NAMESPACE/hello-world:1 --overrides='{"spec":{"template":{"spec":{"imagePullSecrets":[{"name":"icr"}]}}}}'
+	kubectl get pods
+	kubectl get pods -o wide
+	kubectl describe pod hello-world
+	kubectl delete pod hello-world
+	kubectl create -f hello-world-create.yaml
+	kubectl apply -f hello-world-apply.yaml
+	

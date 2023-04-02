@@ -1,0 +1,29 @@
+IAM roles: short term credentials.
+	Enables you to grant resources access without sharing passwords or API keys.
+	To allow end users accessing the application.
+
+5 AWS identity and access management services:
+	1) Organizations:
+		Helps to create and manage multiple AWS accounts.
+		Consolidated buildings.
+	2) AWS identity and Access management (IAM):
+		allows you to access and manage resources securely.
+		You can create and manage users and groups and use permissions to allow and deny access to resources
+		Manage IAM roles and their permissions
+		To assign permissions we need to create IAM POLICIES (JSON).
+		1) AWS managed policy: created and administrated by AWS. standalone policy.
+		2) Customer managed policy: standalone policy created and managed by customer.
+		3) inline policy:
+
+	3) AWS single sign on (SSO):
+		Cloud service that makes easy to centrally manage SSO access to accounts and accesses.
+		
+	4) Amazon cloud directory:
+		Enables you to flexible directories.
+		Multi-dimensional.
+		Offers you to create hirarchies that spend multiple dimensions.
+
+Amazon cognito:
+	provides identity store called cognito user pool
+	This will store all your users so that all the registration, authentications and password resets are handled by the AWS.
+
