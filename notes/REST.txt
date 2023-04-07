@@ -1,0 +1,16 @@
+***************************REST
+
+Jackson:
+	It is a seperate project which is used in the spring behind scenes for data binding
+	It converts JSON to java POJO and vice versa.
+	
+	By default jackson will call appropriate getter/setter methods.
+	
+	JSON to java POJO => call the setter methods on POJO
+	java POJO to JSON => call the getter methods on POJO
+	
+	While building spring rest applications spring will automatically handle Jackson integration.
+	All these happens automatically behind the scenes
+	
+Data JPA:
+	There is a repeatative work we are doing in the JPA for all the entities while doing CRUD operations
