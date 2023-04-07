@@ -1,0 +1,22 @@
+[
+	{
+	  "firstName" : "Kaushik",
+	  "lastName" : "Prajapati",
+	  "age" : 23,
+	  "address" : {
+	    "street" : "wall street",
+	    "city" : "Mumbai",
+	    "country" : "Africa"
+	  }
+	},
+	{
+	  "firstName" : "Kaushik",
+	  "lastName" : "Prajapati",
+	  "age" : 23,
+	  "address" : {
+	    "street" : "wall street",
+	    "city" : "Mumbai",
+	    "country" : "Africa"
+	  }
+	}
+]

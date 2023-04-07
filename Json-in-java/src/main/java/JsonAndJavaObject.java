@@ -7,7 +7,7 @@ public class JsonAndJavaObject {
 	private static ObjectMapper mObjectMapper = new ObjectMapper();
 	
 	private static void toJson(User user) throws JsonProcessingException {
-		String json = mObjectMapper.writeValueAsString(user);
+		String json = mObjectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(user);
 		System.out.println(json);
 	}
 	
@@ -17,7 +17,7 @@ public class JsonAndJavaObject {
 	}
 	
 	public static void main(String[] args) throws JsonProcessingException {
-		User user = new User("Kaushik", "Prajapati", 23);
+		User user = new User("Kaushik", "Prajapati", 23, new Address("wall street", "Mumbai", "Africa"));
 		toJson(user);
 		fromJson("{\"firstName\":\"xyz\",\"lastName\":\"pqr\",\"age\":404}");
 	}
