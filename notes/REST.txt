@@ -13,4 +13,16 @@ Jackson:
 	All these happens automatically behind the scenes
 	
 Data JPA:
-	There is a repeatative work we are doing in the JPA for all the entities while doing CRUD operations
+	There is a repeatative work we are doing in the JPA for all the entities while doing CRUD operations.
+	We can get rid of this using Data JPA.
+	You just tell the entity name and primary key.
+	
+	JpaRepository:
+		interface
+		exposes methods (CRUD and others)
+		
+Security:
+	Spring security uses servlet filters
+	servlet filters are used to pre-process and post-process the web request
+	
+		

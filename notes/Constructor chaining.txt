@@ -1,0 +1,11 @@
+When one constructor explicitly call another overloaded constructor.
+
+Yuo can call constructor only from the another constructor.
+
+You must use the special statement this() to execute another constructor, passing its args if required
+
+this() must be the first executable statement if it's used from another constructor.
+
+
+Why???
+	For storing the default values
