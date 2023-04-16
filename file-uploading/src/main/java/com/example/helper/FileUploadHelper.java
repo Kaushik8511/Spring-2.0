@@ -9,6 +9,7 @@ import java.nio.file.StandardCopyOption;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,12 +36,17 @@ public class FileUploadHelper {
 //			foStream.close();
 			
 			//Alternative
-			String path = UPLOAD_DIRECTORY + File.separator + myFile.getOriginalFilename();
-			Files.copy(myFile.getInputStream(), Paths.get(path), StandardCopyOption.REPLACE_EXISTING);
+			//static path
+//			String path = UPLOAD_DIRECTORY + File.separator + myFile.getOriginalFilename();
+			//Dynamic path
+			final String path = new ClassPathResource("/static/image/").getFile().getAbsolutePath();
+			System.out.println(path + File.separator + myFile.getOriginalFilename());
+			Files.copy(myFile.getInputStream(), Paths.get(path + File.separator + myFile.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
 			
 			uploaded = true;
 			
 		}
+		
 		catch(Exception e) {
 			e.printStackTrace();
 		}
