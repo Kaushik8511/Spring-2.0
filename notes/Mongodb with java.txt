@@ -1,0 +1,5 @@
+Driver:
+	To connect to mongodb through java (or other language) we require libraries, which is called drivers.
+	simplify connecting and interacting with mongodb.
+	Establish secure connection to mongodb cluster.
+	Execute database operations on behalf of client application.

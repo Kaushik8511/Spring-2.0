@@ -1,0 +1,15 @@
+spring:
+  dataSource:
+    password: kaushik
+    url: jdbc:mysql://localhost:3306/springadvanced?useSSL=false&serverTimeZone=UTC
+    username: kaushik
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format-sql: true
+    show-sql: true
+    database: mysql
+    
